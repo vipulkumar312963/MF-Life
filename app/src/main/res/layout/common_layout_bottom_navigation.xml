@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:background="@color/white"
+    android:elevation="8dp">
+
+    <TextView
+        android:id="@+id/bottomHome"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="Home"
+        android:gravity="center"
+        android:textColor="@color/text_secondary"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/bottomAbout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="About"
+        android:gravity="center"
+        android:textColor="@color/primary"
+        android:textStyle="bold"
+        android:background="@drawable/bottom_nav_selected" />
+
+    <TextView
+        android:id="@+id/bottomUpdate"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="Update"
+        android:gravity="center"
+        android:textColor="@color/text_secondary" />
+
+</LinearLayout>

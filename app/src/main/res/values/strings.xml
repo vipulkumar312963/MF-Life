@@ -1,0 +1,140 @@
+<resources>
+    <!-- App Name -->
+    <string name="app_name">MTools</string>
+    <string name="app_title">Meeramma Tools</string>
+
+    <!-- Tagline -->
+    <string name="tagline">Free · Offline · No Ads</string>
+
+    <!-- Foundation Info -->
+    <string name="foundation_name">Meeramma Foundation</string>
+    <string name="website">www.meerammafoundation.org</string>
+
+    <!-- Header -->
+    <string name="menu">Menu</string>
+    <string name="notifications">Notifications</string>
+    <string name="profile">Profile</string>
+
+    <!-- Daily Progress Card -->
+    <string name="daily_progress_greeting_morning">🌅 Good morning! You\'ve completed %1$d of %2$d daily goals. Keep going!</string>
+    <string name="daily_progress_greeting_afternoon">☀️ Good afternoon! You\'ve completed %1$d of %2$d daily goals. Keep going!</string>
+    <string name="daily_progress_greeting_evening">🌤️ Good evening! You\'ve completed %1$d of %2$d daily goals. Keep going!</string>
+    <string name="daily_progress_greeting_night">🌙 Good night! You\'ve completed %1$d of %2$d daily goals. Keep going!</string>
+
+    <!-- Quick Actions -->
+    <string name="quick_actions_title">📌 Quick Actions</string>
+    <string name="quick_add_bill">➕ Add Bill</string>
+    <string name="quick_add_reminder">🔔 Add Reminder</string>
+    <string name="quick_add_goal">🎯 Add Goal</string>
+    <!-- Bill Splitter -->
+    <string name="bill_splitter_title">Bill Splitter</string>
+    <string name="add_group">Add Group</string>
+    <string name="back">Back</string>
+
+    <!-- My Action Zone -->
+    <string name="my_action_zone_title">🎯 MY ACTION ZONE</string>
+    <string name="my_power">MY POWER</string>
+    <string name="my_people">MY PEOPLE</string>
+    <string name="my_pride">MY PRIDE</string>
+    <string name="my_future">MY FUTURE</string>
+    <string name="my_thoughts">MY THOUGHTS</string>
+    <string name="my_vault">MY VAULT</string>
+
+    <!-- Need Help With -->
+    <string name="need_help_title">🤝 NEED HELP WITH?</string>
+    <string name="college_admission">College\nAdmission</string>
+    <string name="getting_job">Getting\nJob</string>
+    <string name="social_needs">Social\nNeeds</string>
+
+    <!-- Special Attention Center -->
+    <string name="special_attention_title">⭐ SPECIAL ATTENTION CENTER</string>
+    <string name="dopamine_detox">DOPAMINE\nDETOX</string>
+    <string name="de_addiction">DE-\nADDICTION</string>
+    <string name="child_care">CHILD\nCARE</string>
+
+    <!-- Daily Spark -->
+    <string name="daily_spark_title">🌟 Your Daily Spark</string>
+    <string name="daily_spark_quote">\"Small daily improvements are the key to staggering long-term results.\"</string>
+
+    <!-- Tools Section (Original) -->
+    <string name="all_tools_title">🛠️ ALL TOOLS</string>
+    <string name="financial_tools">Financial</string>
+    <string name="budget_tools">Budget</string>
+    <string name="health_tools">Health</string>
+    <string name="family_tools">Family</string>
+    <string name="document_tools">Documents</string>
+    <string name="culture_tools">Culture</string>
+    <string name="favorites_tools">Favorites</string>
+    <string name="contact">Contact</string>
+    <string name="donate">Donate</string>
+
+    <!-- Header Content Descriptions (for accessibility) -->
+    <string name="menu_content_description">Menu</string>
+    <string name="notifications_content_description">Notifications</string>
+    <string name="profile_content_description">Profile</string>
+
+    <!-- Footer -->
+    <string name="footer_my_marks">My Marks</string>
+    <string name="footer_favorite">Favorite</string>
+    <string name="footer_search">🔍 Search</string>
+    <string name="footer_donate">Donate</string>
+
+    <!-- Coming Soon Messages -->
+    <string name="coming_soon">Coming Soon!</string>
+    <string name="menu_coming_soon">Menu - Coming Soon!</string>
+    <string name="notifications_coming_soon">Notifications - Coming Soon!</string>
+    <string name="profile_coming_soon">Profile - Coming Soon!</string>
+    <string name="my_marks_coming_soon">My Marks - Coming Soon!</string>
+    <string name="search_coming_soon">Search - Coming Soon!</string>
+
+    <!-- Favorites Fragment -->
+    <string name="favorites_title">My Favorites</string>
+    <string name="favorites_empty">Your favorite tools will appear here</string>
+    <string name="favorites_empty_icon">❤️</string>
+    <string name="favorites_hint">Tap the star icon on any tool to add it here</string>
+
+    <!-- Search -->
+    <string name="search_hint">Search tools...</string>
+    <string name="search_no_results">No tools found</string>
+
+    <!-- Donation -->
+    <string name="donation_form_url">https://docs.google.com/forms/d/e/1FAIpQLSfazrD_iQVz1uftCxrDfxCaySaUEPTyl_uRe1WXYQVO3yWdOg/viewform</string>
+    <string name="contact_form_url">https://docs.google.com/forms/d/e/1FAIpQLSdnfUxwmlUB2SrGE8g0VtV6mASdW1ZAERJRECjvLw0uXm2mEg/viewform</string>
+
+    <!-- Version -->
+    <string name="version">Version %s</string>
+
+    <!-- Tool Categories (for search) -->
+    <string name="category_financial">Financial Tools</string>
+    <string name="category_budget">Budget Planning</string>
+    <string name="category_health">Health &amp; Wellness</string>
+    <string name="category_family">Family Support</string>
+    <string name="category_documents">Document Builder</string>
+    <string name="category_culture">Culture &amp; Heritage</string>
+    <string name="category_favorites">Your Favorites</string>
+
+    <!-- Individual Tool Names -->
+    <string name="tool_emi_calculator">EMI Calculator</string>
+    <string name="tool_loan_eligibility">Loan Eligibility</string>
+    <string name="tool_roi_calculator">ROI Calculator</string>
+    <string name="tool_inflation_calculator">Inflation Calculator</string>
+    <string name="tool_pf_ppf_calculator">PF/PPF Calculator</string>
+    <string name="tool_rd_fd_calculator">RD/FD Calculator</string>
+    <string name="tool_mutual_fund_calculator">Mutual Fund Calculator</string>
+    <string name="tool_sip_calculator">SIP Calculator</string>
+    <string name="tool_retirement_planner">Retirement Planner</string>
+    <string name="tool_tax_calculator">Tax Calculator</string>
+    <string name="tool_gratuity_calculator">Gratuity Calculator</string>
+    <string name="tool_net_worth_calculator">Net Worth Calculator</string>
+    <string name="tool_monthly_budget">Monthly Budget</string>
+    <string name="tool_annual_budget">Annual Budget</string>
+    <string name="tool_expense_tracker">Expense Tracker</string>
+    <string name="tool_income_vs_expenses">Income vs Expenses</string>
+    <string name="tool_debt_payoff">Debt Payoff</string>
+    <string name="tool_bill_splitter">Bill Splitter</string>
+    <string name="tool_savings_goals">Savings Goals</string>
+    <string name="tool_bill_reminder">Bill Reminder</string>
+
+    <!-- Placeholders -->
+    <string name="placeholder_completion">%1$d of %2$d goals completed</string>
+</resources>

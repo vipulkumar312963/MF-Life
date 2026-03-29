@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default colors (can keep same) -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FF121212</color>  <!-- Dark background instead of pure white -->
+
+    <!-- MEERAMMA FOUNDATION BRAND COLORS (keep same) -->
+    <color name="primary">#CA4317</color>
+    <color name="primary_light">#E56B3F</color>
+    <color name="primary_dark">#A53512</color>
+    <color name="secondary">#4CAF50</color>
+
+    <!-- UI Colors - Dark Mode -->
+    <color name="card_background">#2C2C2C</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0B0B0</color>
+    <color name="icon_tint">#CCCCCC</color>
+    <color name="selected_tab_bg">#4A4A4A</color>
+</resources>

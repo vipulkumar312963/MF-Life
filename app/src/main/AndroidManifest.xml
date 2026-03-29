@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="org.meerammafoundation.tools">
+
+    <!-- Required permissions -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:name=".MToolsApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MeerammaTools"
+        android:usesCleartextTraffic="true">
+
+        <!-- ========== MAIN ACTIVITY (Single Activity Architecture) ========== -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- ========== ACTIVITIES YET TO BE CONVERTED TO FRAGMENTS ========== -->
+
+        <!-- About & Favorites -->
+        <activity android:name="org.meerammafoundation.tools.AboutActivity" />
+        <activity android:name="org.meerammafoundation.tools.favorites.FavoritesActivity" />
+        <activity android:name="org.meerammafoundation.tools.favorites.AddFavoriteActivity" />
+
+        <!-- ========== FINANCIAL TOOLS ========== -->
+        <activity android:name="org.meerammafoundation.tools.financial.FinancialToolsActivity" />
+
+        <!-- Financial Calculators -->
+        <activity android:name="org.meerammafoundation.tools.financial.calculators.EMICalculatorActivity" />
+        <activity android:name="org.meerammafoundation.tools.financial.calculators.LoanEligibilityActivity" />
+        <activity android:name="org.meerammafoundation.tools.financial.calculators.ROICalculatorActivity" />
+        <activity android:name="org.meerammafoundation.tools.financial.calculators.InflationCalculatorActivity" />
+        <activity android:name="org.meerammafoundation.tools.financial.calculators.PFPPFCalculatorActivity" />
+        <activity android:name="org.meerammafoundation.tools.financial.calculators.RDFDCalculatorActivity" />
+        <activity android:name="org.meerammafoundation.tools.financial.calculators.MutualFundCalculatorActivity" />
+        <activity android:name="org.meerammafoundation.tools.financial.calculators.SIPCalculatorActivity" />
+        <activity android:name="org.meerammafoundation.tools.financial.calculators.RetirementPlannerActivity" />
+        <activity android:name="org.meerammafoundation.tools.financial.calculators.TaxCalculatorActivity" />
+        <activity android:name="org.meerammafoundation.tools.financial.calculators.GratuityCalculatorActivity" />
+        <activity
+            android:name="org.meerammafoundation.tools.financial.calculators.NetWorthCalculatorActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- ========== BUDGET TOOLS ========== -->
+        <activity android:name="org.meerammafoundation.tools.budget.BudgetToolsActivity" />
+        <activity
+            android:name="org.meerammafoundation.tools.budget.MonthlyBudgetActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="org.meerammafoundation.tools.budget.AnnualBudgetActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="org.meerammafoundation.tools.budget.ExpenseTrackerActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="org.meerammafoundation.tools.budget.IncomeVsExpensesActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="org.meerammafoundation.tools.budget.DebtPayoffActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Bill Splitter (Fragment-based - Activity removed, only keep detail/settings) -->
+        <!-- BillSplitterMainActivity REMOVED - Now using BillSplitterFragment in MainActivity -->
+        <activity
+            android:name="org.meerammafoundation.tools.budget.billSplitter.GroupSettingsActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="org.meerammafoundation.tools.budget.billSplitter.GroupDetailActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Savings Goals -->
+        <activity
+            android:name=".budget.savings.SavingsGoalsActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Bill Reminder -->
+        <activity
+            android:name=".budget.reminder.BillReminderActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- ========== OTHER CATEGORIES (To be converted) ========== -->
+        <activity android:name="org.meerammafoundation.tools.health.HealthToolsActivity" />
+        <activity android:name="org.meerammafoundation.tools.family.FamilyToolsActivity" />
+        <activity android:name="org.meerammafoundation.tools.document.DocumentBuilderActivity" />
+        <activity android:name="org.meerammafoundation.tools.culture.CultureToolsActivity" />
+
+        <!-- ========== NOTIFICATION COMPONENTS ========== -->
+        <receiver
+            android:name=".budget.reminder.NotificationReceiver"
+            android:exported="false" />
+
+        <!-- ========== BOOT RECEIVER ========== -->
+        <receiver
+            android:name=".budget.reminder.BootReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Firebase notification channel (optional) -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="bill_reminder_channel" />
+
+    </application>
+
+</manifest>
