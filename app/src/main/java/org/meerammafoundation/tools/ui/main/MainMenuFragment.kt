@@ -10,9 +10,9 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import org.meerammafoundation.tools.MainActivity
 import org.meerammafoundation.tools.R
-import org.meerammafoundation.tools.budget.reminder.BillReminderActivity
-import org.meerammafoundation.tools.budget.savings.SavingsGoalsActivity
-import org.meerammafoundation.tools.ui.budget.billSplitter.BillSplitterFragment
+import org.meerammafoundation.tools.ui.quickaction.goals.GoalsFragment
+import org.meerammafoundation.tools.ui.quickaction.billSplitter.BillSplitterFragment
+import org.meerammafoundation.tools.ui.quickaction.reminder.ReminderFragment
 import java.util.Calendar
 
 class MainMenuFragment : Fragment() {
@@ -57,22 +57,22 @@ class MainMenuFragment : Fragment() {
     private fun setupClickListeners(view: View) {
         // ========== QUICK ACTIONS ==========
 
-        // Add Bill - Load Bill Splitter as Fragment
+        // Add Bill - Bill Splitter
         view.findViewById<TextView>(R.id.quickAddBill)?.setOnClickListener {
             val billSplitterFragment = BillSplitterFragment()
             (activity as? MainActivity)?.loadFragment(billSplitterFragment, "Bill Splitter")
         }
 
-        // Add Reminder - Opens Bill Reminder
+        // Add Reminder - Generic Reminder
         view.findViewById<TextView>(R.id.quickAddReminder)?.setOnClickListener {
-            val intent = Intent(requireContext(), BillReminderActivity::class.java)
-            startActivity(intent)
+            val reminderFragment = ReminderFragment.newInstance()
+            (activity as? MainActivity)?.loadFragment(reminderFragment, "Reminders", true)  // ✅ true = add to back stack
         }
 
-        // Add Goal - Opens Savings Goals
+        // Add Goal - Goals Fragment
         view.findViewById<TextView>(R.id.quickAddGoal)?.setOnClickListener {
-            val intent = Intent(requireContext(), SavingsGoalsActivity::class.java)
-            startActivity(intent)
+            val goalsFragment = GoalsFragment.newInstance()
+            (activity as? MainActivity)?.loadFragment(goalsFragment, "Goals")
         }
 
         // ========== MY ACTION ZONE ==========

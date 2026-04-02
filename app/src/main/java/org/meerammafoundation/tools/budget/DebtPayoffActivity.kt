@@ -1,6 +1,5 @@
 package org.meerammafoundation.tools.budget
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
@@ -55,7 +54,7 @@ class DebtPayoffActivity : AppCompatActivity() {
         tvPayoffDate = findViewById(R.id.tvPayoffDate)
         scrollView = findViewById(R.id.scrollView)
 
-        sharedPref = getSharedPreferences("DebtPrefs", Context.MODE_PRIVATE)
+        sharedPref = getSharedPreferences("DebtPrefs", MODE_PRIVATE)
 
         btnCalculate.setOnClickListener { calculate() }
         btnSave.setOnClickListener { saveData() }

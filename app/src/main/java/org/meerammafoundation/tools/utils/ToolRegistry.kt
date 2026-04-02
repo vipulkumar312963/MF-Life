@@ -42,7 +42,6 @@ object ToolRegistry {
         Tool("income_vs_expense", "Income vs Expenses", "📊", "Budget", BudgetToolsActivity::class.java),
         Tool("savings_goals", "Savings Goals", "🎯", "Budget", BudgetToolsActivity::class.java),
         Tool("bill_reminder", "Bill Reminder", "⏰", "Budget", BudgetToolsActivity::class.java),
-        Tool("bill_splitter", "Bill Splitter", "🧾", "Budget", BillSplitterMainActivity::class.java),
         Tool("debt_payoff", "Debt Payoff Planner", "💰", "Budget", BudgetToolsActivity::class.java),
 
         // ========== HEALTH TOOLS ==========

@@ -77,21 +77,15 @@
         <!-- Bill Splitter (Fragment-based - Activity removed, only keep detail/settings) -->
         <!-- BillSplitterMainActivity REMOVED - Now using BillSplitterFragment in MainActivity -->
         <activity
-            android:name="org.meerammafoundation.tools.budget.billSplitter.GroupSettingsActivity"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="org.meerammafoundation.tools.budget.billSplitter.GroupDetailActivity"
+            android:name="org.meerammafoundation.tools.ui.quickaction.billSplitter.GroupSettingsActivity"
             android:windowSoftInputMode="adjustResize" />
 
         <!-- Savings Goals -->
         <activity
-            android:name=".budget.savings.SavingsGoalsActivity"
+            android:name=".ui.quickaction.goals.GoalsFragment"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Bill Reminder -->
-        <activity
-            android:name=".budget.reminder.BillReminderActivity"
-            android:windowSoftInputMode="adjustResize" />
+
 
         <!-- ========== OTHER CATEGORIES (To be converted) ========== -->
         <activity android:name="org.meerammafoundation.tools.health.HealthToolsActivity" />
@@ -101,12 +95,12 @@
 
         <!-- ========== NOTIFICATION COMPONENTS ========== -->
         <receiver
-            android:name=".budget.reminder.NotificationReceiver"
+            android:name=".ui.quickaction.reminder.NotificationReceiver"
             android:exported="false" />
 
         <!-- ========== BOOT RECEIVER ========== -->
         <receiver
-            android:name=".budget.reminder.BootReceiver"
+            android:name=".ui.quickaction.reminder.BootReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.RECEIVE_BOOT_COMPLETED">

@@ -1,6 +1,5 @@
 package org.meerammafoundation.tools.budget
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
@@ -50,7 +49,7 @@ class IncomeVsExpensesActivity : AppCompatActivity() {
         tvAdvice = findViewById(R.id.tvAdvice)
         scrollView = findViewById(R.id.scrollView)
 
-        sharedPref = getSharedPreferences("IncomeVsExpensesPrefs", Context.MODE_PRIVATE)
+        sharedPref = getSharedPreferences("IncomeVsExpensesPrefs", MODE_PRIVATE)
 
         btnCalculate.setOnClickListener { calculate() }
         btnSave.setOnClickListener { saveData() }

@@ -9,8 +9,6 @@ import androidx.cardview.widget.CardView
 import org.meerammafoundation.tools.AboutActivity
 import org.meerammafoundation.tools.MainActivity
 import org.meerammafoundation.tools.R
-import org.meerammafoundation.tools.budget.reminder.BillReminderActivity
-import org.meerammafoundation.tools.budget.savings.SavingsGoalsActivity
 
 class BudgetToolsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,21 +18,20 @@ class BudgetToolsActivity : AppCompatActivity() {
         // Find back button
         val backButton = findViewById<TextView>(R.id.backButton)
         backButton.setOnClickListener {
-            finish() // Go back to main screen
+            finish()
         }
 
-        // Find all tool cards – names must match XML IDs exactly
+        // Find budget tool cards (only keep budget-related cards)
         val cardMonthlyBudget = findViewById<CardView>(R.id.cardBudgetMonthly)
         val cardAnnualBudget = findViewById<CardView>(R.id.cardBudgetAnnual)
         val cardExpenseTracker = findViewById<CardView>(R.id.cardBudgetExpense)
         val cardIncomeExpense = findViewById<CardView>(R.id.cardBudgetIncomeExpense)
-        val cardBillSplitter = findViewById<CardView>(R.id.cardBudgetBillSplitter)
         val cardDebtPayoff = findViewById<CardView>(R.id.cardBudgetDebtPayoff)
-        val cardSavingsGoals = findViewById<CardView>(R.id.cardBudgetSavings)
-        val cardBillReminder = findViewById<CardView>(R.id.cardBudgetBillReminder)
 
+        // REMOVED: cardBillSplitter, cardSavingsGoals, cardBillReminder
+        // These are now only in Quick Actions on Main Menu
 
-        // Set click listeners for tools
+        // Set click listeners for budget tools only
         cardMonthlyBudget.setOnClickListener {
             val intent = Intent(this, MonthlyBudgetActivity::class.java)
             startActivity(intent)
@@ -55,23 +52,8 @@ class BudgetToolsActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //cardBillSplitter.setOnClickListener {
-            //val intent = Intent(this, BillSplitterMainActivity::class.java)
-            //startActivity(intent)
-        //}
-
         cardDebtPayoff.setOnClickListener {
             val intent = Intent(this, DebtPayoffActivity::class.java)
-            startActivity(intent)
-        }
-
-        cardSavingsGoals.setOnClickListener {
-            val intent = Intent(this, SavingsGoalsActivity::class.java)
-            startActivity(intent)
-        }
-
-        cardBillReminder.setOnClickListener {
-            val intent = Intent(this, BillReminderActivity::class.java)
             startActivity(intent)
         }
 

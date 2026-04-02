@@ -1,7 +1,7 @@
 package org.meerammafoundation.tools
 
 import android.app.Application
-import org.meerammafoundation.tools.budget.reminder.TestNotificationHelper
+import org.meerammafoundation.tools.ui.quickaction.reminder.TestNotificationHelper
 
 class MToolsApplication : Application() {
     override fun onCreate() {

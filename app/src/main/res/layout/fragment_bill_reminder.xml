@@ -6,8 +6,6 @@
     android:orientation="vertical"
     android:background="@color/white">
 
-    <!-- No header buttons - just tabs -->
-
     <!-- Tab Layout -->
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
@@ -16,26 +14,9 @@
         android:background="@color/card_background"
         app:tabIndicatorColor="@color/primary"
         app:tabSelectedTextColor="@color/primary"
-        app:tabTextColor="@color/text_secondary">
+        app:tabTextColor="@color/text_secondary" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Members" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bills" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Balances" />
-
-    </com.google.android.material.tabs.TabLayout>
-
-    <!-- ViewPager for Members, Bills, Balances -->
+    <!-- ViewPager for Upcoming and Paid tabs -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
@@ -44,14 +25,13 @@
 
     <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAdd"
+        android:id="@+id/fabAddBill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:src="@android:drawable/ic_input_add"
         android:tint="@color/white"
-        app:backgroundTint="@color/primary"
-        android:visibility="visible" />
+        app:backgroundTint="@color/primary" />
 
 </LinearLayout>

@@ -1,6 +1,5 @@
 package org.meerammafoundation.tools.budget
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
@@ -73,7 +72,7 @@ class AnnualBudgetActivity : AppCompatActivity() {
 
         scrollView = findViewById(R.id.scrollView)
 
-        sharedPref = getSharedPreferences("AnnualBudgetPrefs", Context.MODE_PRIVATE)
+        sharedPref = getSharedPreferences("AnnualBudgetPrefs", MODE_PRIVATE)
 
         btnCalculate.setOnClickListener { calculateBudget() }
         btnSave.setOnClickListener { saveData() }
