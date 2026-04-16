@@ -1,4 +1,4 @@
-package org.meerammafoundation.tools.favorites
+package org.meerammafoundation.tools.ui.favorites
 
 import android.content.Context
 import android.content.SharedPreferences

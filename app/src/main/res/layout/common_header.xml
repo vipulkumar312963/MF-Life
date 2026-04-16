@@ -3,32 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/primary"
+    android:background="@color/white"
     android:elevation="4dp"
     android:fitsSystemWindows="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp">
+        android:paddingEnd="16dp">
 
         <!-- Hamburger Menu Icon -->
         <TextView
             android:id="@+id/hamburgerMenu"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:text="☰"
-            android:textSize="28sp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:padding="8dp"
+            android:textSize="24sp"
+            android:textColor="@color/text_primary"
+            android:gravity="center"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:clickable="true"
             android:focusable="true"
-            android:contentDescription="@string/menu_content_description"
             android:background="?attr/selectableItemBackgroundBorderless" />
 
         <!-- Dynamic Header Title -->
@@ -38,8 +36,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/app_title"
-            android:textSize="20sp"
-            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textColor="@color/text_primary"
             android:textStyle="bold"
             android:maxLines="1"
             android:ellipsize="end" />
@@ -47,10 +45,10 @@
         <!-- Right Side Icons Container -->
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <!-- Notification Icon -->
             <TextView
@@ -58,13 +56,11 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:text="🔔"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:gravity="center"
                 android:clickable="true"
                 android:focusable="true"
-                android:contentDescription="@string/notifications_content_description"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="8dp" />
+                android:background="?attr/selectableItemBackgroundBorderless" />
 
             <!-- Profile Icon -->
             <TextView
@@ -72,13 +68,11 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:text="👤"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:gravity="center"
                 android:clickable="true"
                 android:focusable="true"
-                android:contentDescription="@string/profile_content_description"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="8dp" />
+                android:background="?attr/selectableItemBackgroundBorderless" />
 
         </LinearLayout>
 

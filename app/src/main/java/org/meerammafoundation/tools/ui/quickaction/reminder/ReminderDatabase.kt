@@ -10,7 +10,7 @@ import org.meerammafoundation.tools.BuildConfig
 @Database(
     entities = [Reminder::class],
     version = 1,  // Fresh start with version 1
-    exportSchema = true
+    exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class ReminderDatabase : RoomDatabase() {

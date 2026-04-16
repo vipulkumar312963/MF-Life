@@ -1,12 +1,17 @@
-package org.meerammafoundation.tools.favorites
+package org.meerammafoundation.tools.ui.favorites
 
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.*
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import org.meerammafoundation.tools.R
+import org.meerammafoundation.tools.ui.favorites.FavoritesManager
 import org.meerammafoundation.tools.utils.ToolRegistry
 
 class AddFavoriteActivity : AppCompatActivity() {

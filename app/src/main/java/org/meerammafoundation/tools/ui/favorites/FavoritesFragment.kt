@@ -11,17 +11,17 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
-import org.meerammafoundation.tools.MainActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.meerammafoundation.tools.R
-import org.meerammafoundation.tools.favorites.AddFavoriteActivity
-import org.meerammafoundation.tools.favorites.FavoritesManager
+import org.meerammafoundation.tools.ui.favorites.AddFavoriteActivity
+import org.meerammafoundation.tools.ui.favorites.FavoritesManager
 import org.meerammafoundation.tools.utils.Tool
 import org.meerammafoundation.tools.utils.ToolRegistry
 
 class FavoritesFragment : Fragment() {
 
     private lateinit var favoritesContainer: LinearLayout
-    private lateinit var addFavoriteButton: TextView
+    private lateinit var fabAddFavorite: FloatingActionButton
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,9 +35,9 @@ class FavoritesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         favoritesContainer = view.findViewById(R.id.favoritesContainer)
-        addFavoriteButton = view.findViewById(R.id.addFavoriteButton)
+        fabAddFavorite = view.findViewById(R.id.fabAddFavorite)
 
-        addFavoriteButton.setOnClickListener {
+        fabAddFavorite.setOnClickListener {
             val intent = android.content.Intent(requireContext(), AddFavoriteActivity::class.java)
             startActivity(intent)
         }

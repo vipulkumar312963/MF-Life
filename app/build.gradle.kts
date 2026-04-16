@@ -29,11 +29,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // ✅ Add this for release builds
             buildConfigField("boolean", "DEBUG", "false")
         }
         debug {
-            // ✅ Add this for debug builds
             buildConfigField("boolean", "DEBUG", "true")
         }
     }
@@ -58,36 +56,34 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-
-    // CardView
     implementation("androidx.cardview:cardview:1.0.0")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
 
-    // Room
+    // Room Database
     implementation("androidx.room:room-runtime:2.7.1")
-    kapt("androidx.room:room-compiler:2.7.1")
     implementation("androidx.room:room-ktx:2.7.1")
+    kapt("androidx.room:room-compiler:2.7.1")
 
     // Lifecycle
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 
-    // RecyclerView
-    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+
+    // WorkManager (for notifications)
     implementation("androidx.work:work-runtime-ktx:2.9.0")
+
+    // DataStore (for preferences)
+    implementation("androidx.datastore:datastore-preferences:1.1.0")
+
+    // Gson (for JSON serialization)
+    implementation("com.google.code.gson:gson:2.10.1")
 
     // Testing
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation("com.google.code.gson:gson:2.10.1")
-
-    // DataStore (for preferences)
-    implementation("androidx.datastore:datastore-preferences:1.1.0")
-
-
-
-
 }

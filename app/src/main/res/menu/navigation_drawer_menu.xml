@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Preferences Section -->
+    <item android:title="⚙️ PREFERENCES">
+        <menu>
+            <item
+                android:id="@+id/nav_language"
+                android:icon="@android:drawable/ic_menu_edit"
+                android:title="Language" />
+            <item
+                android:id="@+id/nav_currency"
+                android:icon="@drawable/ic_currency"
+                android:title="Currency" />
+        </menu>
+    </item>
+
+    <!-- Legal Section -->
+    <item android:title="📜 LEGAL">
+        <menu>
+            <item
+                android:id="@+id/nav_usage_policy"
+                android:icon="@android:drawable/ic_menu_info_details"
+                android:title="Usage Policy" />
+            <item
+                android:id="@+id/nav_privacy_policy"
+                android:icon="@android:drawable/ic_menu_info_details"
+                android:title="Privacy Policy" />
+            <item
+                android:id="@+id/nav_terms_conditions"
+                android:icon="@android:drawable/ic_menu_info_details"
+                android:title="Terms &amp; Conditions" />
+        </menu>
+    </item>
+
+    <!-- About Section -->
+    <item android:title="ℹ️ ABOUT">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@android:drawable/ic_menu_info_details"
+                android:title="About App" />
+            <item
+                android:id="@+id/nav_contact"
+                android:icon="@android:drawable/ic_menu_send"
+                android:title="Contact Us" />
+        </menu>
+    </item>
+
+</menu>

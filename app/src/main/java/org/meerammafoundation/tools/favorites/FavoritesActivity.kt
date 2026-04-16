@@ -10,6 +10,8 @@ import androidx.cardview.widget.CardView
 import org.meerammafoundation.tools.AboutActivity
 import org.meerammafoundation.tools.MainActivity
 import org.meerammafoundation.tools.R
+import org.meerammafoundation.tools.ui.favorites.AddFavoriteActivity
+import org.meerammafoundation.tools.ui.favorites.FavoritesManager
 import org.meerammafoundation.tools.utils.Tool
 import org.meerammafoundation.tools.utils.ToolRegistry
 

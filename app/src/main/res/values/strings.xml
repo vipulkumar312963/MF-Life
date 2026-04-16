@@ -74,7 +74,7 @@
     <string name="profile_content_description">Profile</string>
 
     <!-- Footer -->
-    <string name="footer_my_marks">My Marks</string>
+    <string name="footer_home">🏠 Home</string>
     <string name="footer_favorite">Favorite</string>
     <string name="footer_search">🔍 Search</string>
     <string name="footer_donate">Donate</string>
