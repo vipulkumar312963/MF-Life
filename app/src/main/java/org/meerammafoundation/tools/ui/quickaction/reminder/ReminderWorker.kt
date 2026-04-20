@@ -25,6 +25,7 @@ class ReminderWorker(
         private const val COOLDOWN_DUE_TODAY = 6
         private const val COOLDOWN_DUE_TOMORROW = 12
         private const val COOLDOWN_UPCOMING = 24
+        private const val COOLDOWN_DAILY = 24  // Daily reminders: once per day
     }
 
     override suspend fun doWork(): Result {
@@ -59,7 +60,9 @@ class ReminderWorker(
                 val dueDayStart = getStartOfDay(reminder.dueDate)
                 val daysUntilDue = ((dueDayStart - todayStart) / DAY_MS).toInt()
 
+                // Different cooldown for daily reminders
                 val cooldownHours = when {
+                    reminder.recurrence == RecurrenceType.DAILY -> COOLDOWN_DAILY
                     daysUntilDue < 0 -> COOLDOWN_OVERDUE
                     daysUntilDue == 0 -> COOLDOWN_DUE_TODAY
                     daysUntilDue == 1 -> COOLDOWN_DUE_TOMORROW
@@ -85,7 +88,7 @@ class ReminderWorker(
                 val shouldNotify = isNotCompleted && isNotSnoozed && isNotOnCooldown && shouldNotifyByDays
 
                 if (BuildConfig.DEBUG) {
-                    Log.d(TAG, "  Reminder: ${reminder.title}, isCompleted: ${reminder.isCompleted}, daysUntilDue: $daysUntilDue, cooldown: ${cooldownHours}h, shouldNotify: $shouldNotify")
+                    Log.d(TAG, "  Reminder: ${reminder.title}, recurrence: ${reminder.recurrence}, daysUntilDue: $daysUntilDue, shouldNotify: $shouldNotify")
                 }
                 shouldNotify
             }

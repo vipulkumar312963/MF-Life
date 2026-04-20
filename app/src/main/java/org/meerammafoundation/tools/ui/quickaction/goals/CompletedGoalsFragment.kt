@@ -18,12 +18,6 @@ class CompletedGoalsFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: GoalAdapter
 
-    companion object {
-        fun newInstance(): CompletedGoalsFragment {
-            return CompletedGoalsFragment()
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,20 +30,42 @@ class CompletedGoalsFragment : Fragment() {
 
         adapter = GoalAdapter(
             emptyList(),
-            { _ -> },  // Add - hidden for completed goals
-            { _ -> },  // Remove - hidden for completed goals
-            { _ -> },  // Edit - hidden for completed goals
-            { goal -> showDeleteDialog(goal) }
+            { goal -> showCompletedGoalOptions(goal) },
+            { goal -> showCompletedGoalOptions(goal) }
         )
         recyclerView.adapter = adapter
 
         viewModel = ViewModelProvider(requireActivity())[GoalViewModel::class.java]
 
+        loadGoals()
+
+        return view
+    }
+
+    private fun loadGoals() {
         viewModel.completedGoals.observe(viewLifecycleOwner) { goals ->
             adapter.updateData(goals)
         }
+    }
 
-        return view
+    fun refresh() {
+        loadGoals()
+    }
+
+    private fun showCompletedGoalOptions(goal: Goal) {
+        val options = mutableListOf<String>()
+        val actions = mutableListOf<() -> Unit>()
+
+        options.add("🗑️ Delete Goal")
+        actions.add { showDeleteDialog(goal) }
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(goal.title)
+            .setItems(options.toTypedArray()) { _, which ->
+                actions[which].invoke()
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 
     private fun showDeleteDialog(goal: Goal) {
@@ -59,6 +75,9 @@ class CompletedGoalsFragment : Fragment() {
             .setPositiveButton("Delete") { _, _ ->
                 viewModel.deleteGoal(goal)
                 Toast.makeText(requireContext(), "Goal deleted", Toast.LENGTH_SHORT).show()
+                refresh()
+                (parentFragment as? GoalsFragment)?.refreshActiveGoals()
+                viewModel.regenerateRecurringGoalsIfNeeded()
             }
             .setNegativeButton("Cancel", null)
             .show()

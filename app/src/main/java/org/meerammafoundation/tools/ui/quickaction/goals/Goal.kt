@@ -28,6 +28,13 @@ data class Goal(
     @ColumnInfo(name = "unit")
     val unit: String,  // "₹", "kg", "books", "hours", "km", "days", etc.
 
+    // Recurrence (NEW)
+    @ColumnInfo(name = "recurrence")
+    val recurrence: GoalRecurrence = GoalRecurrence.ONE_TIME,
+
+    @ColumnInfo(name = "custom_duration_days")
+    val customDurationDays: Int? = null,  // For CUSTOM recurrence
+
     // Timeline
     @ColumnInfo(name = "target_date")
     val targetDate: Long? = null,
@@ -49,6 +56,10 @@ data class Goal(
     @ColumnInfo(name = "color")
     val color: String? = null,
 
+    // Notification tracking
+    @ColumnInfo(name = "last_progress_notified_at")
+    val lastProgressNotifiedAt: Long? = null,
+
     @ColumnInfo(name = "created_at")
     val createdAt: Long = System.currentTimeMillis(),
 
@@ -64,6 +75,16 @@ enum class GoalType {
     READING,     // Books/articles
     PRODUCTIVITY,// Tasks/projects
     CUSTOM       // User defined
+}
+
+// NEW: Goal recurrence options
+enum class GoalRecurrence {
+    ONE_TIME,    // One-time goal
+    DAILY,       // Daily recurring goal
+    WEEKLY,      // Weekly recurring goal
+    MONTHLY,     // Monthly recurring goal
+    YEARLY,      // Yearly recurring goal
+    CUSTOM       // Custom duration (days)
 }
 
 data class GoalWithProgress(

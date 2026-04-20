@@ -1,10 +1,15 @@
-package org.meerammafoundation.tools.ui.quickaction.reminder
+package org.meerammafoundation.tools.notifications
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.meerammafoundation.tools.ui.quickaction.reminder.ReminderDatabase
+import org.meerammafoundation.tools.ui.quickaction.reminder.ReminderRepository
 
 class NotificationReceiver : BroadcastReceiver() {
 
@@ -23,7 +28,7 @@ class NotificationReceiver : BroadcastReceiver() {
                 if (reminderId != -1L) {
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
-                            val database = ReminderDatabase.getDatabase(
+                            val database = ReminderDatabase.Companion.getDatabase(
                                 context.applicationContext
                             )
                             val repository = ReminderRepository(database)

@@ -18,10 +18,24 @@ interface GoalDao {
     @Query("SELECT * FROM goals ORDER BY is_completed ASC, target_date ASC, created_at DESC")
     fun getAllGoals(): Flow<List<Goal>>
 
-    @Query("SELECT * FROM goals WHERE is_completed = 0 ORDER BY target_date ASC, created_at DESC")
+    // Update GoalDao.kt
+    @Query("""
+    SELECT * FROM goals 
+    WHERE is_completed = 0 
+    ORDER BY 
+        CASE recurrence 
+            WHEN 'DAILY' THEN 0 
+            WHEN 'WEEKLY' THEN 1 
+            WHEN 'MONTHLY' THEN 2 
+            WHEN 'YEARLY' THEN 3 
+            ELSE 4 
+        END, 
+        target_date ASC, 
+        created_at DESC
+""")
     fun getActiveGoals(): Flow<List<Goal>>
 
-    @Query("SELECT * FROM goals WHERE is_completed = 1 ORDER BY updated_at DESC")
+    @Query("SELECT * FROM goals WHERE is_completed = 1 ORDER BY completed_date DESC, updated_at DESC")
     fun getCompletedGoals(): Flow<List<Goal>>
 
     @Query("SELECT * FROM goals WHERE id = :goalId")
@@ -33,7 +47,7 @@ interface GoalDao {
     @Query("UPDATE goals SET current_value = current_value - :amount, updated_at = :updatedAt WHERE id = :goalId AND current_value >= :amount")
     suspend fun removeProgress(goalId: Long, amount: Double, updatedAt: Long)
 
-    @Query("UPDATE goals SET is_completed = 1, completed_date = :completedDate, updated_at = :updatedAt WHERE id = :goalId AND current_value >= target_value")
+    @Query("UPDATE goals SET is_completed = 1, completed_date = :completedDate, updated_at = :updatedAt WHERE id = :goalId")
     suspend fun markGoalCompleted(goalId: Long, completedDate: Long, updatedAt: Long)
 
     @Query("DELETE FROM goals WHERE id = :goalId")

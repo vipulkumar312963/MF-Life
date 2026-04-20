@@ -1,4 +1,4 @@
-package org.meerammafoundation.tools.ui.quickaction.reminder
+package org.meerammafoundation.tools.notifications
 
 import android.Manifest
 import android.app.NotificationChannel
@@ -14,6 +14,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import org.meerammafoundation.tools.MainActivity
 import org.meerammafoundation.tools.R
+import org.meerammafoundation.tools.notifications.NotificationReceiver
 
 object NotificationHelper {
 
@@ -83,7 +84,7 @@ object NotificationHelper {
 
         // Action intent for marking as completed
         val markCompletedIntent = Intent(context, NotificationReceiver::class.java).apply {
-            action = NotificationReceiver.ACTION_MARK_AS_COMPLETED
+            action = NotificationReceiver.Companion.ACTION_MARK_AS_COMPLETED
             putExtra("reminder_id", reminderId)
             putExtra("reminder_title", reminderTitle)
         }

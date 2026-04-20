@@ -34,7 +34,6 @@
 
         <!-- About & Favorites -->
         <activity android:name="org.meerammafoundation.tools.AboutActivity" />
-        <activity android:name="org.meerammafoundation.tools.favorites.FavoritesActivity" />
         <activity android:name="org.meerammafoundation.tools.ui.favorites.AddFavoriteActivity" />
 
         <!-- ========== FINANCIAL TOOLS ========== -->
@@ -95,7 +94,7 @@
 
         <!-- ========== NOTIFICATION COMPONENTS ========== -->
         <receiver
-            android:name=".ui.quickaction.reminder.NotificationReceiver"
+            android:name=".notifications.NotificationReceiver"
             android:exported="false" />
 
         <!-- ========== BOOT RECEIVER ========== -->

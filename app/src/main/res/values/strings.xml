@@ -137,4 +137,5 @@
 
     <!-- Placeholders -->
     <string name="placeholder_completion">%1$d of %2$d goals completed</string>
+    <string name="add_favorite">Add Favorite</string>
 </resources>

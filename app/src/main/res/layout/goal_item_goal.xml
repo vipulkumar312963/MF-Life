@@ -11,187 +11,51 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="horizontal"
+        android:padding="12dp">
 
-        <!-- Header Row with Icon, Title, and Status -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:id="@+id/tvGoalIcon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:text="🎯"
-                android:textSize="24sp"
-                android:gravity="center" />
-
-            <TextView
-                android:id="@+id/tvGoalName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Goal Name"
-                android:textSize="18sp"
-                android:textColor="@color/text_primary"
-                android:textStyle="bold"
-                android:layout_marginStart="8dp" />
-
-            <TextView
-                android:id="@+id/tvStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✓ COMPLETED"
-                android:textSize="11sp"
-                android:textColor="@color/primary"
-                android:background="@drawable/rounded_bg"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="4dp"
-                android:visibility="gone" />
-        </LinearLayout>
-
-        <!-- Description (Optional) -->
+        <!-- Goal Icon -->
         <TextView
-            android:id="@+id/tvDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Description"
-            android:textSize="12sp"
-            android:textColor="@color/text_secondary"
-            android:visibility="gone" />
+            android:id="@+id/tvGoalIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="🎯"
+            android:textSize="24sp"
+            android:gravity="center" />
 
-        <!-- Current Value Row -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="12dp">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Current:"
-                android:textSize="14sp"
-                android:textColor="@color/text_secondary" />
-
-            <TextView
-                android:id="@+id/tvCurrentValue"
+                android:id="@+id/tvGoalTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textColor="@color/text_primary"
                 android:textStyle="bold" />
-        </LinearLayout>
-
-        <!-- Target Value Row -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="4dp">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Target:"
-                android:textSize="14sp"
-                android:textColor="@color/text_secondary" />
-
-            <TextView
-                android:id="@+id/tvTargetValue"
+                android:id="@+id/tvProgress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="14sp"
-                android:textColor="@color/text_primary" />
+                android:textSize="12sp"
+                android:textColor="@color/text_secondary"
+                android:layout_marginTop="4dp" />
+
         </LinearLayout>
 
-        <!-- Progress Bar -->
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:layout_marginTop="12dp"
-            android:progressTint="@color/primary"
-            android:progressBackgroundTint="@color/card_background" />
-
         <TextView
-            android:id="@+id/tvProgress"
+            android:id="@+id/tvRecurrence"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="0% completed"
             android:textSize="12sp"
-            android:textColor="@color/text_secondary" />
-
-        <!-- Deadline Info -->
-        <TextView
-            android:id="@+id/tvDeadline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text=""
-            android:textSize="12sp"
-            android:textColor="@color/text_secondary"
-            android:visibility="gone" />
-
-        <!-- Action Buttons Row -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp"
-            android:gravity="end">
-
-            <Button
-                android:id="@+id/btnAddProgress"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="Add"
-                android:textSize="12sp"
-                android:backgroundTint="@color/primary"
-                android:layout_marginEnd="8dp"
-                android:visibility="visible" />
-
-            <Button
-                android:id="@+id/btnRemoveProgress"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="Remove"
-                android:textSize="12sp"
-                android:backgroundTint="@color/text_secondary"
-                android:layout_marginEnd="8dp"
-                android:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/ivEditGoal"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_edit"
-                app:tint="@color/primary"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackgroundBorderless" />
-
-            <ImageView
-                android:id="@+id/ivDeleteGoal"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_delete"
-                app:tint="@color/text_secondary"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackgroundBorderless" />
-        </LinearLayout>
+            android:textStyle="bold"
+            android:padding="4dp" />
 
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

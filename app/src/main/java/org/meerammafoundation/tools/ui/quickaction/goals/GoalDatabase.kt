@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [Goal::class],
-    version = 1,
+    version = 3,  // ✅ Changed from 1 to 2
     exportSchema = false
 )
 abstract class GoalDatabase : RoomDatabase() {
@@ -27,7 +27,7 @@ abstract class GoalDatabase : RoomDatabase() {
                     GoalDatabase::class.java,
                     DB_NAME
                 )
-                    .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration()  // ✅ Clears old data, creates fresh schema
                     .setJournalMode(JournalMode.WRITE_AHEAD_LOGGING)
                     .build()
                 INSTANCE = instance

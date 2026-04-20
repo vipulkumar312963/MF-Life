@@ -20,8 +20,18 @@ class GoalViewModel(application: Application) : AndroidViewModel(application) {
     private val _selectedGoal = MutableLiveData<Goal?>()
     val selectedGoal: LiveData<Goal?> = _selectedGoal
 
+    init {
+        viewModelScope.launch {
+            repository.regenerateRecurringGoalsIfNeeded()
+        }
+    }
+
     fun selectGoal(goal: Goal) {
         _selectedGoal.value = goal
+    }
+
+    fun regenerateRecurringGoalsIfNeeded() = viewModelScope.launch {
+        repository.regenerateRecurringGoalsIfNeeded()
     }
 
     fun createGoal(
@@ -32,9 +42,22 @@ class GoalViewModel(application: Application) : AndroidViewModel(application) {
         currentValue: Double = 0.0,
         targetDate: Long? = null,
         description: String? = null,
-        icon: String = "🎯"
+        icon: String = "🎯",
+        recurrence: GoalRecurrence = GoalRecurrence.ONE_TIME,
+        customDurationDays: Int? = null
     ) = viewModelScope.launch {
-        repository.createGoal(title, goalType, targetValue, unit, currentValue, targetDate, description, icon)
+        repository.createGoal(
+            title = title,
+            goalType = goalType,
+            targetValue = targetValue,
+            unit = unit,
+            currentValue = currentValue,
+            targetDate = targetDate,
+            description = description,
+            icon = icon,
+            recurrence = recurrence,
+            customDurationDays = customDurationDays
+        )
     }
 
     fun updateGoal(goal: Goal) = viewModelScope.launch {
@@ -51,6 +74,10 @@ class GoalViewModel(application: Application) : AndroidViewModel(application) {
 
     fun deleteGoal(goal: Goal) = viewModelScope.launch {
         repository.deleteGoal(goal)
+    }
+
+    fun markGoalAsCompleted(goalId: Long) = viewModelScope.launch {
+        repository.markGoalAsCompleted(goalId)
     }
 
     fun getGoalWithProgress(goal: Goal): GoalWithProgress {

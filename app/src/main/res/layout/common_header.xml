@@ -50,29 +50,39 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <!-- Notification Icon -->
-            <TextView
-                android:id="@+id/notificationIcon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:text="🔔"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackgroundBorderless" />
+            <!-- Notification Icon with Badge -->
+            <FrameLayout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="8dp">
 
-            <!-- Profile Icon -->
-            <TextView
-                android:id="@+id/profileIcon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:text="👤"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackgroundBorderless" />
+                <TextView
+                    android:id="@+id/notificationIcon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="🔔"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackgroundBorderless" />
+
+                <!-- Notification Badge -->
+                <TextView
+                    android:id="@+id/notificationBadge"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="top|end"
+                    android:background="@drawable/badge_background"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="10sp"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+
+            <!-- ❌ Profile Icon REMOVED -->
 
         </LinearLayout>
 

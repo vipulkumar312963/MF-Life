@@ -26,6 +26,7 @@ class GoalsFragment : Fragment() {
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
     private lateinit var fabAdd: FloatingActionButton
+    private lateinit var goalsPagerAdapter: GoalsPagerAdapter
 
     companion object {
         fun newInstance(): GoalsFragment {
@@ -50,8 +51,8 @@ class GoalsFragment : Fragment() {
         viewPager = view.findViewById(R.id.viewPager)
         fabAdd = view.findViewById(R.id.fabAddGoal)
 
-        val adapter = GoalsPagerAdapter(this)
-        viewPager.adapter = adapter
+        goalsPagerAdapter = GoalsPagerAdapter(this)
+        viewPager.adapter = goalsPagerAdapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = when (position) {
@@ -66,24 +67,67 @@ class GoalsFragment : Fragment() {
         }
     }
 
+    fun refreshCompletedGoals() {
+        goalsPagerAdapter.getCompletedFragment()?.refresh()
+    }
+
+    fun refreshActiveGoals() {
+        goalsPagerAdapter.getActiveFragment()?.refresh()
+    }
+
     private fun showAddGoalDialog() {
         val dialogView = layoutInflater.inflate(R.layout.goal_dialog_add_goal, null)
         val etTitle = dialogView.findViewById<TextInputEditText>(R.id.etGoalTitle)
         val etTarget = dialogView.findViewById<TextInputEditText>(R.id.etTargetValue)
-        val etCurrent = dialogView.findViewById<TextInputEditText>(R.id.etCurrentValue)
-        val spinnerType = dialogView.findViewById<Spinner>(R.id.spinnerGoalType)
-        val etUnit = dialogView.findViewById<TextInputEditText>(R.id.etUnit)
+        val spinnerUnit = dialogView.findViewById<Spinner>(R.id.spinnerUnit)
+        val spinnerRecurrence = dialogView.findViewById<Spinner>(R.id.spinnerRecurrence)
+        val layoutCustomDuration = dialogView.findViewById<LinearLayout>(R.id.layoutCustomDuration)
+        val etCustomDuration = dialogView.findViewById<TextInputEditText>(R.id.etCustomDuration)
         val tvDate = dialogView.findViewById<TextView>(R.id.tvTargetDate)
-        val etDescription = dialogView.findViewById<TextInputEditText>(R.id.etDescription)
 
         var selectedDate: Long? = null
 
-        // Setup goal type spinner
-        val types = GoalType.values().map { it.name }
-        val typeAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, types)
-        typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerType.adapter = typeAdapter
+        // Setup Unit Spinner with predefined options
+        val units = arrayOf("₹ (Rupees)", "kg (Kilograms)", "books", "hours", "km (Kilometers)", "days", "% (Percentage)")
+        val unitValues = arrayOf("₹", "kg", "books", "hours", "km", "days", "%")
+        val unitAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, units)
+        unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerUnit.adapter = unitAdapter
 
+        // Setup Recurrence Spinner
+        val recurrences = arrayOf(
+            "One time",
+            "Daily",
+            "Weekly",
+            "Monthly",
+            "Yearly",
+            "Custom (days)"
+        )
+        val recurrenceValues = arrayOf(
+            GoalRecurrence.ONE_TIME,
+            GoalRecurrence.DAILY,
+            GoalRecurrence.WEEKLY,
+            GoalRecurrence.MONTHLY,
+            GoalRecurrence.YEARLY,
+            GoalRecurrence.CUSTOM
+        )
+        val recurrenceAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, recurrences)
+        recurrenceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerRecurrence.adapter = recurrenceAdapter
+
+        // Show/hide custom duration field based on recurrence selection
+        spinnerRecurrence.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                layoutCustomDuration.visibility = if (recurrenceValues[position] == GoalRecurrence.CUSTOM) {
+                    View.VISIBLE
+                } else {
+                    View.GONE
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+
+        // Target Date click listener
         tvDate.setOnClickListener {
             val calendar = Calendar.getInstance()
             DatePickerDialog(
@@ -114,10 +158,11 @@ class GoalsFragment : Fragment() {
             positiveButton.setOnClickListener {
                 val title = etTitle.text.toString().trim()
                 val targetStr = etTarget.text.toString().trim()
-                val currentStr = etCurrent.text.toString().trim()
-                val typeIndex = spinnerType.selectedItemPosition
-                val unit = etUnit.text.toString().trim()
-                val description = etDescription.text.toString().trim()
+                val unitIndex = spinnerUnit.selectedItemPosition
+                val unit = unitValues[unitIndex]
+                val recurrenceIndex = spinnerRecurrence.selectedItemPosition
+                val recurrence = recurrenceValues[recurrenceIndex]
+                val customDurationStr = etCustomDuration.text.toString().trim()
 
                 var hasError = false
 
@@ -137,36 +182,48 @@ class GoalsFragment : Fragment() {
                     }
                 }
 
-                if (unit.isEmpty()) {
-                    etUnit.error = "Enter unit (e.g., ₹, kg, books)"
-                    hasError = true
+                var customDurationDays: Int? = null
+                if (recurrence == GoalRecurrence.CUSTOM) {
+                    if (customDurationStr.isEmpty()) {
+                        etCustomDuration.error = "Enter duration in days"
+                        hasError = true
+                    } else {
+                        val days = customDurationStr.toIntOrNull()
+                        if (days == null || days <= 0) {
+                            etCustomDuration.error = "Enter valid number of days"
+                            hasError = true
+                        } else {
+                            customDurationDays = days
+                        }
+                    }
                 }
 
-                if (currentStr.isNotEmpty()) {
-                    val current = currentStr.toDoubleOrNull()
-                    if (current == null || current < 0) {
-                        etCurrent.error = "Enter valid amount"
-                        hasError = true
-                    }
+                if (selectedDate == null) {
+                    Toast.makeText(requireContext(), "Please select a target date", Toast.LENGTH_SHORT).show()
+                    hasError = true
                 }
 
                 if (hasError) return@setOnClickListener
 
                 val target = targetStr.toDouble()
-                val current = if (currentStr.isNotEmpty()) currentStr.toDouble() else 0.0
-                val goalType = GoalType.values()[typeIndex]
 
                 viewModel.createGoal(
                     title = title,
-                    goalType = goalType,
+                    goalType = GoalType.CUSTOM,
                     targetValue = target,
                     unit = unit,
-                    currentValue = current,
+                    currentValue = 0.0,
                     targetDate = selectedDate,
-                    description = description
+                    description = null,
+                    recurrence = recurrence,
+                    customDurationDays = customDurationDays
                 )
                 Toast.makeText(requireContext(), "Goal created", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
+
+                // Refresh both tabs
+                refreshActiveGoals()
+                refreshCompletedGoals()
             }
         }
 

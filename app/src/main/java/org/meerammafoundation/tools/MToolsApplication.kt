@@ -3,6 +3,7 @@ package org.meerammafoundation.tools
 import android.app.Application
 import kotlinx.coroutines.runBlocking
 import org.meerammafoundation.tools.data.PreferencesManager
+import org.meerammafoundation.tools.ui.quickaction.goals.GoalWorkManager
 import org.meerammafoundation.tools.ui.quickaction.reminder.TestNotificationHelper
 
 class MToolsApplication : Application() {
@@ -26,5 +27,8 @@ class MToolsApplication : Application() {
 
         // Create notification channel once when app starts
         TestNotificationHelper.createNotificationChannel(this)
+
+        // ✅ Schedule daily recurring goal check (runs once when app starts)
+        GoalWorkManager.schedule(this)
     }
 }

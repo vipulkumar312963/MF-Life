@@ -35,6 +35,7 @@ enum class ReminderType {
  */
 enum class RecurrenceType {
     ONE_TIME,
+    DAILY,      // ✅ Added DAILY
     MONTHLY,
     QUARTERLY,
     YEARLY
